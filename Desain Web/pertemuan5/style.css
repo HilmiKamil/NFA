@@ -1,0 +1,212 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #eaeaea;
+  display: flex;
+  min-height: 100vh;
+  padding: 10px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 3px;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  background: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.header {
+  grid-column: 1 / -1;
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 3px;
+}
+.header h1 {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+.header p {
+  font-style: italic;
+}
+.nav {
+  grid-column: 1 / -1;
+  background: #34495e;
+  padding: 10px;
+  border-radius: 3px;
+}
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 12px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+.nav ul li a:hover {
+  background: #f39c12;
+  color: #2c3e50;
+}
+.sidebar-left,
+.sidebar-right {
+  background: #f8f9fa;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+.sidebar-left h3,
+.sidebar-right h3 {
+  color: #2c3e50;
+  border-bottom: 1px solid #f39c12;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+.sidebar-left ul,
+.sidebar-right ul {
+  list-style: square inside;
+  margin-bottom: 15px;
+}
+.sidebar-left ul li,
+.sidebar-right ul li {
+  margin-bottom: 5px;
+}
+.sidebar-left ul li a,
+.sidebar-right ul li a {
+  color: #2980b9;
+  text-decoration: none;
+}
+.sidebar-left ul li a:hover {
+  text-decoration: underline;
+}
+
+.main {
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow-y: auto;
+}
+.main h2 {
+  color: #2c3e50;
+  border-bottom: 2px solid #f39c12;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 1.4em;
+}
+.message {
+  position: relative;
+  overflow: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 3px;
+}
+.badge {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  background: #e74c3c;
+  color: white;
+  padding: 2px 6px;
+  font-size: 0.7em;
+  border-radius: 10px;
+  border: 1px solid #c0392b;
+}
+.avatar {
+  float: left;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 1px solid #f39c12;
+  width: 40px;
+  height: 40px;
+}
+.content {
+  margin-left: 50px;
+}
+.content strong {
+  color: #2c3e50;
+}
+.time {
+  font-size: 0.8em;
+  color: #7f8c8d;
+  margin-left: 8px;
+  font-style: italic;
+}
+.footer {
+  grid-column: 1 / -1;
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 3px;
+  border-top: 2px solid #f39c12;
+}
+.message-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.message-form label {
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 0.95em;
+}
+.message-form input,
+.message-form textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-family: inherit;
+  width: 100%;
+}
+.message-form textarea {
+  resize: vertical;
+}
+.message-form button {
+  background: #f39c12;
+  color: #2c3e50;
+  border: none;
+  padding: 8px;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid #e67e22;
+  margin-top: 5px;
+}
+.message-form button:hover {
+  background: #e67e22;
+  color: white;
+}
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .nav ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .avatar {
+    float: none;
+    display: block;
+    margin: 0 auto 5px;
+  }
+  .content {
+    margin-left: 0;
+    text-align: center;
+  }
+}

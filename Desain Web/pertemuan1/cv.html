@@ -2,84 +2,124 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Muhamad Hilmi Kamil</title>
+
     <style>
         * {
             box-sizing: border-box;
         }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f9;
         }
-        header, footer {
-            background-color: #40B5BB;
+
+        header {
+            background-color: #2e8b8b;
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 25px;
         }
 
         main {
             display: flex;
             gap: 20px;
-            padding: 20px;
+            padding: 30px;
         }
+
         aside {
             flex: 1;
-            background-color: #EAF8FA;
+            background-color: #e8f4f4;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+
         aside img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 5px dashed black;
+            border: 4px solid #2e8b8b;
+            margin-bottom: 15px;
         }
+
         article {
             flex: 2;
-            background-color: #ffffff;
-            padding: 20px;
+            background-color: white;
+            padding: 25px;
             border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        h2, h3 {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
+
+        h2 {
             margin-bottom: 5px;
         }
-        .section-title {
-            color: #40B5BB;
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #2e8b8b;
+            border-bottom: 2px solid #2e8b8b;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 18px;
+            list-style-type: none;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #2e8b8b;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        aside:hover, article:hover {
+            transform: scale(1.01);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
+
 <body>
 
 <header>
-    <h1>CV Muhamad Hilmi Kamil</h1>
+    <h1>Curriculum Vitae</h1>
 </header>
 
 <main>
     <aside>
-        <img src="image/1.jpg" alt="Foto Muhamad Hilmi Kamil">
-        <h2>MUHAMAD HILMI KAMIL</h2>
-        <h3>0110223293</h3>
-        <ul>
-            <li>No. Handphone: 085933519783</li>
-            <li>Email: hilmihelios@gmail.com</li>
-            <li>Alamat: Jl. Jatijajar II RT04 RW08, Tapos, Kota Depok</li>
-        </ul>
+        <img src="profil.jpeg" alt="Foto Muhamad Hilmi Kamil">
+        <h2>Muhamad Hilmi Kamil</h2>
+        <p>0110223293</p>
+
+        <p><b>Kontak</b></p>
+        <p>085933519783</p>
+        <p>hilmihelios@gmail.com</p>
+        <p>Depok, Indonesia</p>
 
         <h3>Experience</h3>
         <ul>
             <li><b>2021-2022 STAI Yaperi</b></li>
-            <li>Apprentice programmer creating attendance application using CodeIgniter</li>
+            <li>Apprentice Programmer (Attendance App - CodeIgniter)</li>
         </ul>
 
         <h3>Hobbies</h3>
@@ -91,21 +131,25 @@
 
     <article>
         <section>
-            <h3 class="section-title">About Me</h3>
-            <p>My name is Muhamad Hilmi Kamil, I graduated from SMK Generasi Madani. I have a great desire to seek new knowledge and I will try to advance the company you lead. I have experience in programming languages.</p>
+            <h3>About Me</h3>
+            <p>
+                I am a student of Informatics Engineering with a strong desire 
+                to learn new technologies. I am disciplined, responsible, and 
+                able to work individually or in a team.
+            </p>
         </section>
 
         <section>
-            <h3 class="section-title">Education</h3>
+            <h3>Education</h3>
             <ul>
                 <li><b>SMP Negeri 12 Depok</b> (2017-2020)</li>
                 <li><b>SMK Generasi Madani</b> (2020-2023)</li>
-                <li><b>STT Terpadu Nurul Fikri</b> (2023-Finish)</li>
+                <li><b>STT Terpadu Nurul Fikri</b> (2023-Now)</li>
             </ul>
         </section>
 
         <section>
-            <h3 class="section-title">Skills</h3>
+            <h3>Skills</h3>
             <ul>
                 <li>HTML</li>
                 <li>CSS</li>
@@ -115,10 +159,10 @@
         </section>
 
         <section>
-            <h3 class="section-title">Awards</h3>
+            <h3>Awards</h3>
             <ul>
-                <li><b>INTERNET OF THINGS</b> - 4th National Level Champion</li>
-                <li><b>TOURNAMENT SAINS DATA NASIONAL</b> - 7th National Level Champion</li>
+                <li><b>Internet of Things</b> - 4th National Champion</li>
+                <li><b>Data Science Tournament</b> - 7th National Champion</li>
             </ul>
         </section>
     </article>
