@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistem Manajemen Transportasi - Hilmi Kamil</title>
+</head>
+    <style>
+        body {
+            font-family: Segoe UI;
+            background: #f0f2f5;
+            padding: 2rem 1rem;
+            color: #1a2a3a;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            padding: 1.5rem 2rem 2rem 2rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1e3c72;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2c5282;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        #daftar {
+            margin-top: 1rem;
+        }
+
+        .pelanggan-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .pelanggan-card strong {
+            font-size: 1.25rem;
+            color: #2d3748;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .pelanggan-card p {
+            margin: 0.25rem 0;
+            line-height: 1.5;
+            color: #4a5568;
+        }
+
+        .kendaraan-info {
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+    </style>
+<body>
+    <div class="container">
+        <h1>Sistem Manajemen Transportasi</h1>
+        <h3>Daftar Pelanggan yang Sedang Menyewa Kendaraan</h3>
+        <hr>
+        <div id="daftar"></div>
+    </div>
+
+    <script>
+        // CLASS KENDARAAN (Superclass)
+        class Kendaraan {
+            constructor(merek, model, tahun) {
+                this.merek = merek;
+                this.model = model;
+                this.tahun = tahun;
+            }
+            getInfo() {
+                return `${this.merek} ${this.model} (${this.tahun})`;
+            }
+        }
+
+        // CLASS MOBIL (Extends)
+        class Mobil extends Kendaraan {
+            constructor(merek, model, tahun, jumlahPintu) {
+                super(merek, model, tahun);
+                this.jumlahPintu = jumlahPintu;
+            }
+            // Override method info untuk menampilkan detail mobil
+            getInfo() {
+                return `${super.getInfo()} - Mobil ${this.jumlahPintu} pintu`;
+            }
+        }
+
+        // CLASS MOTOR (Extends)
+        class Motor extends Kendaraan {
+            constructor(merek, model, tahun, tipe) {
+                super(merek, model, tahun);
+                this.tipe = tipe;
+            }
+            getInfo() {
+                return `${super.getInfo()} - Motor ${this.tipe}`;
+            }
+        }
+
+        // CLASS PELANGGAN
+        class Pelanggan {
+            constructor(nama, nomorTelepon) {
+                this.nama = nama;
+                this.nomorTelepon = nomorTelepon;
+                this.kendaraanDisewa = null; // null = belum menyewa
+            }
+
+            // Mencatat transaksi penyewaan
+            sewaKendaraan(kendaraan) {
+                if (this.kendaraanDisewa !== null) {
+                    console.log(`${this.nama} sudah menyewa kendaraan. Tidak bisa menyewa baru.`);
+                    return false;
+                }
+                this.kendaraanDisewa = kendaraan;
+                console.log(`Transaksi berhasil: ${this.nama} menyewa ${kendaraan.getInfo()}`);
+                return true;
+            }
+
+            // Mengembalikan kendaraan
+            kembalikanKendaraan() {
+                if (this.kendaraanDisewa === null) {
+                    console.log(`${this.nama} tidak sedang menyewa kendaraan.`);
+                    return false;
+                }
+                console.log(`${this.nama} mengembalikan ${this.kendaraanDisewa.getInfo()}`);
+                this.kendaraanDisewa = null;
+                return true;
+            }
+        }
+
+        // DATA DAN TRANSAKSI
+        const mobil1 = new Mobil("Toyota", "Avanza", 2021, 4);
+        const mobil2 = new Mobil("Honda", "Civic", 2022, 4);
+        const motor1 = new Motor("Yamaha", "NMAX", 2023, "Matic");
+        const motor2 = new Motor("Honda", "CBR250RR", 2022, "Sport");
+
+        const pelanggan1 = new Pelanggan("Budi Santoso", "081234567890");
+        const pelanggan2 = new Pelanggan("Siti Aminah", "082345678901");
+        const pelanggan3 = new Pelanggan("Andi Wijaya", "085678901234");
+
+        // Lakukan penyewaan
+        pelanggan1.sewaKendaraan(mobil1);
+        pelanggan2.sewaKendaraan(motor1);
+        pelanggan3.sewaKendaraan(mobil2);
+
+        const daftarPelanggan = [pelanggan1, pelanggan2, pelanggan3];
+
+        // MENAMPILKAN DAFTAR PELANGGAN YANG SEDANG MENYEWA
+        function tampilkanDaftar() {
+            // Filter pelanggan yang sedang menyewa
+            const aktif = daftarPelanggan.filter(p => p.kendaraanDisewa !== null);
+            const container = document.getElementById("daftar");
+            container.innerHTML = "";
+
+            if (aktif.length === 0) {
+                container.innerHTML = "<p>Tidak ada pelanggan yang sedang menyewa.</p>";
+                return;
+            }
+
+            // Tampilkan setiap pelanggan aktif
+            aktif.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "pelanggan-card";
+                card.innerHTML = `
+                    <strong>${p.nama}</strong>
+                    <p>${p.nomorTelepon}</p>
+                    <div class="kendaraan-info">
+                        Kendaraan disewa: ${p.kendaraanDisewa.getInfo()}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        tampilkanDaftar();
+
+        // Tampilkan Console
+        console.log("===== Daftar Pelanggan Aktif =====");
+        daftarPelanggan.forEach(p => {
+            if (p.kendaraanDisewa) {
+                console.log(`${p.nama} - ${p.nomorTelepon} menyewa ${p.kendaraanDisewa.getInfo()}`);
+            }
+        });
+    </script>
+</body>
+</html>
