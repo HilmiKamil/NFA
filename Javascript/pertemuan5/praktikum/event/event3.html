@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="addChild">Add Child</button>
+    <div id="parent" style="padding: 20px; background-color: lightgrey;">
+        <div class="child" style="background-color: lightblue; padding: 10px; margin: 10px;">Items 1</div>
+        <div class="child" style="background-color: lightblue; padding: 10px; margin: 10px;">Items 2</div>
+        <div class="child" style="background-color: lightblue; padding: 10px; margin: 10px;">Items 3</div>
+    </div>
+
+    <script>
+        document.getElementById("parent").addEventListener("click", function(event){
+            if(event.target.matches(".child")){
+                alert("Elemet Child diklik : " + event.target.textContent);
+            }
+        });
+
+        document.getElementById("addChild").addEventListener("click", function(event){
+            let newChild = document.createElement("div");
+            newChild.className = "child";
+            newChild.style.padding = "10px";
+            newChild.style.margin = "10px";
+            newChild.style.backgroundColor = "lightgreen";
+            newChild.textContent = "Item Baru";
+            document.getElementById("parent").appendChild(newChild);
+
+
+        });
+    </script>
+</body>
+</html>
+

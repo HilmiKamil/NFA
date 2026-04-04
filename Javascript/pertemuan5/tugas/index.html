@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h2>Manajemen Produk</h2>
+
+    <input type="text" id="nama" placeholder="Nama Produk">
+    <input type="number" id="harga" placeholder="Harga">
+    <button id="addButton">Tambah</button>
+
+    <ul id="listProduk"></ul>
+
+    <script>
+        // Data awal (5 produk)
+        let produkList = [
+            { id: 1, nama: "Laptop", harga: 12000000 },
+            { id: 2, nama: "Smartphone", harga: 5000000 },
+            { id: 3, nama: "Tablet", harga: 4000000 },
+            { id: 4, nama: "Headset", harga: 350000 },
+            { id: 5, nama: "Mouse", harga: 150000 }
+        ];
+
+        // Tampilkan produk (Destructing)
+        function tampilkanProduk() {
+        const list = document.getElementById("listProduk");
+        list.innerHTML = "";
+
+        produkList.forEach(({ id, nama, harga }) => {
+            const li = document.createElement("li");
+
+            li.innerHTML = `
+            ${id}. ${nama} - Rp ${harga.toLocaleString()}
+            <button data-id="${id}">Hapus</button>
+            `;
+
+            list.appendChild(li);
+        });
+        }
+
+        // Tambah produk (Spread)
+        function tambahProduk(...produkBaru) {
+            produkList = [...produkList, ...produkBaru];
+            tampilkanProduk();
+        }
+
+        // Hapus produk (Rest)
+        function hapusProduk(...hapus) {
+            produkList = produkList.filter(produk => !hapus.includes(produk.id));
+            tampilkanProduk();
+        }
+
+        // Event Tambah
+        document.getElementById("addButton").addEventListener("click", () => {
+            const nama = document.getElementById("nama").value;
+            const harga = parseInt(document.getElementById("harga").value);
+
+            if (!nama || isNaN(harga)) {
+                alert("Input tidak valid!");
+                return;
+        }
+
+        const maxId = Math.max(...produkList.map(p => p.id), 0);
+
+        const produkBaru = {
+            id: maxId + 1,
+            nama,
+            harga
+        };
+
+        tambahProduk(produkBaru);
+
+        document.getElementById("nama").value = "";
+        document.getElementById("harga").value = "";
+        });
+
+        // Event Delegation (hapus)
+        document.getElementById("listProduk").addEventListener("click", (event) => {
+        if (event.target.matches("[data-id]")) {
+            const id = parseInt(event.target.getAttribute("data-id"));
+            hapusProduk(id);
+        }
+        });
+
+        // tampil
+        tampilkanProduk();
+
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
